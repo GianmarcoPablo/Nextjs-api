@@ -37,3 +37,15 @@ export async function POST(request: Request) {
         return NextResponse.json({ message: "Error", error }, { status: 500 });
     }
 }
+
+export async function DELETE(request: Request) {
+    try {
+        const rp = await prisma.todo.deleteMany({
+            where: { completed: true }
+        })
+        console.log(rp);
+        return NextResponse.json({ message: "Todos completados eliminados" })
+    } catch (error) {
+        return NextResponse.json({ message: "Error", error });
+    }
+}
