@@ -3,7 +3,7 @@
 import Image from "next/image"
 import { IoAddCircleOutline, IoRemoveCircleOutline } from "react-icons/io5"
 import { Star } from "..";
-import { addProductToCart } from "@/shopping-cart/actions/actions";
+import { addProductToCart, removeProductFromCart } from "@/shopping-cart/actions/actions";
 import { useRouter } from "next/navigation";
 
 interface Props {
@@ -21,6 +21,11 @@ export default function ProductCard({ id, name, price, rating, image }: Props) {
 
     const onAddToCart = () => {
         addProductToCart(id)
+        router.refresh()
+    }
+
+    const onRemoveFromCart = () => {
+        removeProductFromCart(id)
         router.refresh()
     }
 
@@ -71,6 +76,7 @@ export default function ProductCard({ id, name, price, rating, image }: Props) {
 
                         <button
                             className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg w-10 h-10 flex items-center justify-center"
+                            onClick={onRemoveFromCart}
                         >
                             <IoRemoveCircleOutline
                                 size={20}

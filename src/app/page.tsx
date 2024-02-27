@@ -1,8 +1,13 @@
+import { redirect } from "next/navigation";
 
-export default function Home() {
+
+export default async function Home() {
+
+  redirect("/dashboard")
+
   return (
     <>
-      <span className="text-5xl">Hola mundo</span>
+      <h1>home</h1>
     </>
   );
 }
